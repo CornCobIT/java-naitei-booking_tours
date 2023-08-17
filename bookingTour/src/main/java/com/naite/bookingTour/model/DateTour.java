@@ -42,6 +42,44 @@ public class DateTour implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+	public DateTourId getId() {
+		return id;
+	}
+
+	public void setId(DateTourId id) {
+		this.id = id;
+	}
+
+	public Tour getTour() {
+		return tour;
+	}
+
+	public void setTour(Tour tour) {
+		this.tour = tour;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+    
+    
 }
 
 @Embeddable

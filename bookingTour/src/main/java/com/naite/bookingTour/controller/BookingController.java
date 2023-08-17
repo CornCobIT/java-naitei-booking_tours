@@ -1,11 +1,6 @@
 package com.naite.bookingTour.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,69 +9,51 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.naite.bookingTour.model.Booking;
 import com.naite.bookingTour.model.Tour;
+import com.naite.bookingTour.model.User;
 import com.naite.bookingTour.repository.BookingRepository;
-import com.naite.bookingTour.repository.ClientRepository;
-import com.naite.bookingTour.repository.TourRepository;
+import com.naite.bookingTour.repository.UserRepository;
+import com.naite.bookingTour.service.TourService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/booking")
 public class BookingController {
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private TourService tourService;
 
-//	@Autowired
-//	private TourRepository tourRepo;
-//
-//	@Autowired
-//	private ClientRepository clientRepo;
-//
-//	@Autowired
-//	private BookingRepository bookingRepo;
-//
-//	@ModelAttribute("currentTour")
-//	public Tour tour() {
-//		return new Tour();
-//	}
-//
-//	@GetMapping("/{id}") 
-//	public String bookingForm(Model model, @PathVariable("id") Long id, @ModelAttribute("currentTour") Tour tour) {
-//		Booking booking = new Booking();
-//		Tour tour2 = tourRepo.findById(id).orElse(null);
-//		if (tour2 != null) {
-//			tour.setId(tour2.getId());
-//			tour.setName(tour2.getName());
-//			tour.setDescription(tour2.getDescription());
-//			tour.setType(tour2.getType());
-//			tour.setDescription(tour2.getDescription());
-//			tour.setImage(tour2.getImage());
-//		}
-//		model.addAttribute("tour", tour2);
-//		model.addAttribute("booking", booking);
-//		return "bookingInfo";
-//	}
-//
-//
-//	public void setTourRepo(TourRepository tourRepo) {
-//		this.tourRepo = tourRepo;
-//	}
-//
-//	public BookingRepository getBookingRepo() {
-//		return bookingRepo;
-//	}
-//
-//	public void setBookingRepo(BookingRepository bookingRepo) {
-//		this.bookingRepo = bookingRepo;
-//	}
-//
-//	public ClientRepository getClientRepo() {
-//		return clientRepo;
-//	}
-//
-//	public void setClientRepo(ClientRepository clientRepo) {
-//		this.clientRepo = clientRepo;
-//	}
+	@GetMapping("/booking/{tourId}")
+	public String bookingTour(HttpServletRequest request, Model model, @PathVariable("tourId") Long tourId) {
+		// Check if the model contains any flash attributes with the "error" key
+		if (model.containsAttribute("error")) {
+			// Retrieve the error message and add it to the model for rendering in the login
+			// page
+			String errorMessage = (String) model.getAttribute("error");
+			model.addAttribute("errorMessage", errorMessage);
+		}
+		// Check if the user is authenticated (session has the username attribute)
+		HttpSession session = request.getSession();
+		if (session.getAttribute("username") == null) {
+			return "redirect:/login"; // Redirect to the login page if not authenticated
+		}
+
+		Optional<User> userOptional = userRepository.findByUsername((String) session.getAttribute("username"));
+		User user = userOptional.get();
+		model.addAttribute("user", user);
+
+		// Retrieve the tour information based on the tour ID
+		Tour tour = tourService.findTourById(tourId);
+		model.addAttribute("tour", tour);
+
+		// User is authenticated, show the booking page
+		return "booking";
+	}
 
 }
