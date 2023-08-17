@@ -3,26 +3,33 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<link rel="stylesheet" th:href="@{/css/userHome.css}">
+<link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-		<link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css?ver=1.0">
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet"
+	href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css?ver=1.0">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" />
 
 <section class="banner">
-	<header>	
+	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light custom_header navbar-toggler py-3">
-		<img class="logo" th:src="@{/static/image/logo.jpg}" alt="" />
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+			<img class="logo" th:src="@{/static/image/logo.jpg}" alt="" />
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+				aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			<ul class="navbar-nav ml-auto my-lg-0 mt-2 mt-lg-0">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-				</li>		
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav ml-auto my-lg-0 mt-2 mt-lg-0">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/tour">Tour</a>
+					</li>
 					<li class="nav-item" th:if="${fullname != null}">
 						<a class="nav-link" href="/profile" th:text=${fullname}></a>
 					</li>
@@ -35,9 +42,9 @@
 					<li class="nav-item" th:if="${fullname == null}">
 						<a class="nav-link" href="/register">Register</a>
 					</li>
-				</span>
-		  	</ul>
-		</nav>	
+					</span>
+				</ul>
+		</nav>
 	</header>
 	<div class="owl-carousel owl-theme main_banner">
 		<div class="item"><img src="https://pbs.twimg.com/media/EGHYvttU4AAYKb7?format=jpg&name=large" alt="" /></div>
@@ -87,7 +94,8 @@
 					</div>
 					<div class="col-lg-3">
 						<div class="form-group">
-							<input class="form-control search-slt" type="text" name="dates" placeholder="Select Date...">
+							<input class="form-control search-slt" type="text" name="dates"
+								placeholder="Select Date...">
 							<i class="fa fa-calendar"></i>
 						</div>
 					</div>
@@ -107,7 +115,8 @@
 						</div>
 					</div>
 					<div class="col-lg-2">
-						<button type="submit" class="btn_search btn btn-danger wrn-btn ripple"><span>Search </span></button>
+						<button type="submit" class="btn_search btn btn-danger wrn-btn ripple"><span>Search
+							</span></button>
 					</div>
 				</div>
 			</form>
@@ -126,7 +135,10 @@
 			<div class="box_grid">
 				<figure>
 					<a href="#!" class="wish_bt"></a>
-					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_3.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_3.jpg" class="img-fluid" alt=""
+							width="800" height="533">
+						<div class="read_more"><span>Read more</span></div>
+					</a>
 					<small>Historic</small>
 				</figure>
 				<div class="wrapper">
@@ -136,16 +148,21 @@
 				</div>
 				<ul>
 					<li><i class="fa fa-clock-o"></i> 1h 30min</li>
-					<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></li>
+					<li>
+						<div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
+					</li>
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="item">
 			<div class="box_grid">
 				<figure>
 					<a href="#!" class="wish_bt"></a>
-					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_2.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_2.jpg" class="img-fluid" alt=""
+							width="800" height="533">
+						<div class="read_more"><span>Read more</span></div>
+					</a>
 					<small>Churches</small>
 				</figure>
 				<div class="wrapper">
@@ -155,16 +172,21 @@
 				</div>
 				<ul>
 					<li><i class="fa fa-clock-o"></i> 1h 30min</li>
-					<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
+					<li>
+						<div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+					</li>
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="item">
 			<div class="box_grid">
 				<figure>
 					<a href="#!" class="wish_bt"></a>
-					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_1.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_1.jpg" class="img-fluid" alt=""
+							width="800" height="533">
+						<div class="read_more"><span>Read more</span></div>
+					</a>
 					<small>Historic</small>
 				</figure>
 				<div class="wrapper">
@@ -174,16 +196,21 @@
 				</div>
 				<ul>
 					<li><i class="fa fa-clock-o"></i> 1h 30min</li>
-					<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
+					<li>
+						<div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+					</li>
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="item">
 			<div class="box_grid">
 				<figure>
 					<a href="#!" class="wish_bt"></a>
-					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_4.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_4.jpg" class="img-fluid" alt=""
+							width="800" height="533">
+						<div class="read_more"><span>Read more</span></div>
+					</a>
 					<small>Historic</small>
 				</figure>
 				<div class="wrapper">
@@ -193,16 +220,21 @@
 				</div>
 				<ul>
 					<li><i class="fa fa-clock-o"></i> 1h 30min</li>
-					<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
+					<li>
+						<div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+					</li>
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="item">
 			<div class="box_grid">
 				<figure>
 					<a href="#!" class="wish_bt"></a>
-					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_3.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_3.jpg" class="img-fluid" alt=""
+							width="800" height="533">
+						<div class="read_more"><span>Read more</span></div>
+					</a>
 					<small>Museum</small>
 				</figure>
 				<div class="wrapper">
@@ -212,16 +244,21 @@
 				</div>
 				<ul>
 					<li><i class="fa fa-clock-o"></i> 2h 30min</li>
-					<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>9.0</strong></div></li>
+					<li>
+						<div class="score"><span>Superb<em>350 Reviews</em></span><strong>9.0</strong></div>
+					</li>
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="item">
 			<div class="box_grid">
 				<figure>
 					<a href="#!" class="wish_bt"></a>
-					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_1.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+					<a href="#!"><img src="http://www.ansonika.com/panagea/img/tour_1.jpg" class="img-fluid" alt=""
+							width="800" height="533">
+						<div class="read_more"><span>Read more</span></div>
+					</a>
 					<small>Walking</small>
 				</figure>
 				<div class="wrapper">
@@ -231,7 +268,9 @@
 				</div>
 				<ul>
 					<li><i class="fa fa-clock-o"></i> 1h 30min</li>
-					<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.5</strong></div></li>
+					<li>
+						<div class="score"><span>Good<em>350 Reviews</em></span><strong>7.5</strong></div>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -240,8 +279,9 @@
 
 <div class="backdrop" style="display: none;"></div>
 
-<script th:src="@{/js/userHome.js}"></script>		
+<script th:src="@{/js/userHome.js}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
-<script src="https://www.jqueryscript.net/demo/Customizable-Animated-Dropdown-Plugin-with-jQuery-CSS3-Nice-Select/js/jquery.nice-select.js"></script>
+<script
+	src="https://www.jqueryscript.net/demo/Customizable-Animated-Dropdown-Plugin-with-jQuery-CSS3-Nice-Select/js/jquery.nice-select.js"></script>

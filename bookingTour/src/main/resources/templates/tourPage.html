@@ -1,0 +1,152 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Tours</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" th:href="@{/css/tourPage.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/home.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+		integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<header>
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light custom_header navbar-toggler py-3">
+		<img class="logo" th:src="@{/static/image/logo.jpg}" alt="" />
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+			aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav ml-auto my-lg-0 mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/tour">Tour</a>
+				</li>
+				<li class="nav-item" th:if="${fullname != null}">
+					<a class="nav-link" href="/profile" th:text=${fullname}></a>
+				</li>
+				<li class="nav-item" th:if="${fullname != null}">
+					<a class="nav-link" href="/logout">Logout</a>
+				</li>
+				<li class="nav-item" th:if="${fullname == null}">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+				<li class="nav-item" th:if="${fullname == null}">
+					<a class="nav-link" href="/register">Register</a>
+				</li>
+				</span>
+			</ul>
+	</nav>
+</header>
+
+<body>
+	<div class="container pt-5">
+		<div class="row">
+			<div class="col-12">
+				<article th:each="tourDateWrapper: ${tourDateWrappers}" class="card car-details label-info sponsored">
+					<div class="card-body">
+						<div class="d-flex flex-md-row align-items-md-start align-items-center flex-column">
+							<div class="thumbnail position-relative mb-md-0 mb-3">
+								<img src="https://plhold.com/img/220x170.png"
+									data-zoom="https://plhold.com/img/1920x1484.png" />
+							</div>
+							<div class="w-100">
+								<div class="d-flex flex-md-row flex-column">
+									<h3 class="mr-3"><a th:text="${tourDateWrapper.getTour().getName()}"></a></h3>
+									<div class="ml-auto text-right">
+										<h3><a th:text="${tourDateWrapper.getTour().getPrice()}"></a></h3>
+										<ul class="rating">
+											<li><i class="fas fa-star text-warning"></i></li>
+											<li><i class="fas fa-star text-warning"></i></li>
+											<li><i class="fas fa-star text-warning"></i></li>
+											<li><i class="fas fa-star text-grey"></i></li>
+											<li><i class="fas fa-star text-grey"></i></li>
+										</ul>
+									</div>
+								</div>
+								<hr>
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-md-4 col-12">
+											<ul>
+												<li><i class="fas fa-hourglass-start"></i> <strong>Strat Date: </strong>
+													<a th:text="${tourDateWrapper.getDateTour().getStartDate()}"></a>
+												</li>
+												<li><i class="fas fa-calendar"></i> <strong>Duration: </strong><a
+														th:text="${tourDateWrapper.getTour().getDuration()}"></a></li>
+
+
+											</ul>
+
+										</div>
+
+										<div class="col-md-8 col-12">
+											<ul>
+												<li><i class="fas fa-hourglass-end"></i> <strong>End Date: </strong>
+													<a th:text="${tourDateWrapper.getDateTour().getEndDate()}"></a>
+												</li>
+												<li><i class="fas fa-map-marker-alt"></i>
+													<strong>Location: </strong><a
+														th:text="${tourDateWrapper.getTour().getLocation()}"></a>
+												</li>
+
+											</ul>
+										</div>
+										<div class="description"><i class="fas fa-edit"></i> <strong>Decription:
+											</strong><a th:text="${tourDateWrapper.getTour().getDescription()}"></a>
+										</div>
+										<div class="col-12">
+											<div
+												class="d-flex flex-md-row flex-column align-items-center justify-content-end">
+												<button th:onclick="'redirectToBooking(' + ${tourDateWrapper.getTour().getId()} + ')'"
+													class="btn btn-success w-100 mb-md-0 mb-3 mr-md-3 mr-0">
+													<i class="fas fa-phone"></i> Booking Now
+												</button>
+
+												<script th:inline="javascript">
+													function redirectToBooking(tourId) {
+
+														// Redirect to the booking page with the tour ID
+														window.location.href = "/booking/" + tourId;
+													}
+												</script>
+												<button class="btn btn-default w-100"><i class="fas fa-comment"></i>
+													Review (18)</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<script src="main.js"></script>
+
+</html>

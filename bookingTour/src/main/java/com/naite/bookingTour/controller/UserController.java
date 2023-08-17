@@ -20,8 +20,7 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
-	private int id;
-
+	
 	@GetMapping("/profile")
 	public String showDashboard(HttpServletRequest request, Model model) {
 		// Check if the model contains any flash attributes with the "error" key

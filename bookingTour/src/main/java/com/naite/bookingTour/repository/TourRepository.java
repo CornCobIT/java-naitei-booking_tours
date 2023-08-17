@@ -14,6 +14,4 @@ public interface TourRepository extends JpaRepository<Tour, Long> {
 
     Optional<Tour> findById(Long id);
 
-//    @Query("SELECT t FROM Tour t JOIN t.dateTours dt WHERE dt.startDate >= :startDate AND dt.endDate <= :endDate")
-//    List<Tour> findByStartDateGreaterThanEqualAndEndDateLessThanEqual(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }
